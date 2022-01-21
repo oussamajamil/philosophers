@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ojamil <ojamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 16:30:57 by ojamil            #+#    #+#             */
-/*   Updated: 2022/01/21 14:47:48 by ojamil           ###   ########.fr       */
+/*   Created: 2022/01/21 14:33:07 by ojamil            #+#    #+#             */
+/*   Updated: 2022/01/21 14:49:40 by ojamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char *av[])
+void *action(void *arg)
 {
-	t_time	times;
-	t_intger t;
-	t_data data;
+	printf("hello\n");
+	return (0);
+}
+void ft_pthread(t_time *times,t_intger *t,t_data *data)
+{
 	int i;
+	t_philo *tmp;
 
-	data.strct = NULL;
-	ft_check_params(ac, av);
-	ft_remplir_int(&t, ac, av);
-	ft_remplir_data(&data,t.number_of_philosophers);
-	ft_pthread(&times,&t,&data);
+	i = 0;
+	tmp = NULL;
+	while (tmp != data->strct && data->strct->next)
+	{
+		if (i == 0)
+		{
+			tmp = data->strct;
+			i = 1;
+		}
+		// printf("%d\n",data->strct->id_philo);
+		pthread_create(&data->strct->philo,NULL,&action,NULL);
+		sleep(1);
+		data->strct = data->strct->next;
+	}
+	
 }

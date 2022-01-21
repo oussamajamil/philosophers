@@ -6,7 +6,7 @@
 /*   By: ojamil <ojamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:31:17 by ojamil            #+#    #+#             */
-/*   Updated: 2022/01/20 17:45:18 by ojamil           ###   ########.fr       */
+/*   Updated: 2022/01/21 14:47:52 by ojamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	t_philo *strct;
-	t_philo	*last;
+	t_philo	*last;   
 }	t_data;
 
 int		ft_atoi(char *str);
@@ -55,4 +55,9 @@ int		ft_isnumber(char *str);
 int		ft_check_ac(char **str);
 void	ft_check_params(int ac, char **av);
 void	ft_remplir_int(t_intger *t, int ac, char **av);
+t_philo *Insert_data(int id);
+void	add_back(int id, t_data *data);
+void	ft_print_list(t_data *dt);
+void	ft_remplir_data(t_data *dt, int ac);
+void	ft_pthread(t_time *times,t_intger *t,t_data *data);
 #endif

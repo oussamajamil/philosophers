@@ -6,7 +6,7 @@
 /*   By: ojamil <ojamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:41:16 by ojamil            #+#    #+#             */
-/*   Updated: 2022/01/20 16:37:37 by ojamil           ###   ########.fr       */
+/*   Updated: 2022/01/21 11:36:58 by ojamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,4 @@ void	ft_remplir_int(t_intger *t, int ac, char **av)
 	else
 		t->number_of_times_each_philosopher_must_eat = -1;
 }
+
