@@ -6,7 +6,7 @@
 /*   By: ojamil <ojamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 09:25:16 by ojamil            #+#    #+#             */
-/*   Updated: 2022/01/21 13:21:21 by ojamil           ###   ########.fr       */
+/*   Updated: 2022/02/06 11:19:20 by ojamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_philo *Insert_data(int id)
 	dt->last_time_eat = 0;
 	dt->next = NULL;
 	dt->cp_time_eat = 0;
+	dt->times_start = ft_time();
+	pthread_mutex_init(&dt->fork,NULL);
 	return (dt);
 }
 

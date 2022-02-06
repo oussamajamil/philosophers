@@ -6,21 +6,22 @@
 /*   By: ojamil <ojamil@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:41:16 by ojamil            #+#    #+#             */
-/*   Updated: 2022/01/21 11:36:58 by ojamil           ###   ########.fr       */
+/*   Updated: 2022/02/05 22:08:10 by ojamil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long int	figure_time(t_time t1)
+long int ft_time()
 {
-	long int	i;
-	long int	j;
+	struct timeval	t1;
+	gettimeofday(&t1, NULL);
+	return ((t1.tv_sec * 1000 * 1000 + t1.tv_usec) / 1000);
+}
 
-	gettimeofday(&t1.t2, NULL);
-	i = (t1.t1.tv_sec * 1000 * 1000 + t1.t1.tv_usec) / 1000;
-	j = (t1.t2.tv_sec * 1000 * 1000 + t1.t2.tv_usec) / 1000;
-	return (j - i);
+long long time_action(long int a, long int b)
+{
+	return (b - a);
 }
 
 void	ft_check_params(int ac, char **av)
@@ -44,3 +45,40 @@ void	ft_remplir_int(t_intger *t, int ac, char **av)
 		t->number_of_times_each_philosopher_must_eat = -1;
 }
 
+void	ft_intiale(t_data *data,t_intger *t)
+{
+	int i;
+	t_philo *tmp;
+
+	i = 0;
+	tmp = NULL;
+	while (tmp != data->strct && data->strct->next)
+	{
+		if (i == 0)
+		{
+			tmp = data->strct;
+			i = 1;
+		}
+		data->strct->data = t;
+		data->strct = data->strct->next;
+	}
+}
+
+void		ft_join(t_data *data)
+{
+	int i;
+	t_philo *tmp;
+
+	i = 0;
+	tmp = NULL;
+	while (tmp != data->strct && data->strct->next)
+	{
+		if (i == 0)
+		{
+			tmp = data->strct;
+			i = 1;
+		}
+		pthread_join(data->strct->philo,NULL);
+		data->strct = data->strct->next;
+	}
+}
