@@ -27,7 +27,7 @@ SRC += philo/exec.c
 all : $(NAME)
 
 $(NAME) : $(SRC) $(INCLUDES)
-		$(CC)  $(SRC) -o ./philo/$(NAME)
+		$(CC) $(SRC) -lpthread  -o ./philo/$(NAME)
 
 clean :
 	rm -rf ./philo/$(NAME)

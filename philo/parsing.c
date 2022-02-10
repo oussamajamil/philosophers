@@ -16,10 +16,10 @@ long int ft_time()
 {
 	struct timeval	t1;
 	gettimeofday(&t1, NULL);
-	return ((t1.tv_sec * 1000 * 1000 + t1.tv_usec) / 1000);
+	return (t1.tv_sec * 1000 + t1.tv_usec / 1000);
 }
 
-long long time_action(long int a, long int b)
+long int time_action(long int a, long int b)
 {
 	return (b - a);
 }

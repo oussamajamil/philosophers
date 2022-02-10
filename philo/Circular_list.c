@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-t_philo *Insert_data(int id)
+t_philo *Insert_data(int id, t_data *data)
 {
 	t_philo *dt;
 
@@ -24,6 +24,7 @@ t_philo *Insert_data(int id)
 	dt->next = NULL;
 	dt->cp_time_eat = 0;
 	dt->times_start = ft_time();
+	dt->ds = data;
 	pthread_mutex_init(&dt->fork,NULL);
 	return (dt);
 }
@@ -33,7 +34,7 @@ void add_back(int id, t_data *data)
 	t_philo *philo;
 	t_philo *last;
 
-	philo = Insert_data(id);
+	philo = Insert_data(id,data);
 	if (!philo)
 		return ;
 	if (data->strct)
