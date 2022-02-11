@@ -18,6 +18,10 @@ long int ft_time()
 	gettimeofday(&t1, NULL);
 	return (t1.tv_sec * 1000 + t1.tv_usec / 1000);
 }
+// ft_print_lock_unlock(t_philo *philo,char *msg)
+// {
+	
+// }
 
 long int time_action(long int a, long int b)
 {

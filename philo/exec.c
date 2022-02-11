@@ -25,12 +25,18 @@ void *action(void *arg)
 	{
 		pthread_mutex_lock(&philo->fork);
 		philo->time_action = ft_time();
+		pthread_mutex_lock(&philo->ds->write);
 		printf(" philo %d TAKE YOUR FIRST FORK time:%ld\n",philo->id_philo,time_action(philo->times_start,philo->time_action));
+		pthread_mutex_unlock(&philo->ds->write);
 		pthread_mutex_lock(&philo->next->fork);
 		philo->time_action = ft_time();
+		pthread_mutex_lock(&philo->ds->write);
 		printf(" philo %d TAKE YOUR SCONDE FORK  time:%ld\n",philo->id_philo,time_action(philo->times_start,philo->time_action));
+		pthread_mutex_unlock(&philo->ds->write);
 		philo->time_action = ft_time();
+		// pthread_mutex_lock(&philo->ds->write);
 		printf("philo %d eats      time : %ld\n",philo->id_philo,time_action(philo->times_start,philo->time_action));
+		// pthread_mutex_unlock(&philo->ds->write);
 		philo->cp_time_eat++;
 		philo->last_time_eat = ft_time();
 		usleep(philo->data->time_to_eat * 1000);
@@ -38,10 +44,14 @@ void *action(void *arg)
 		pthread_mutex_unlock(&philo->next->fork);
 		//
 		philo->time_action = ft_time();
+		// pthread_mutex_lock(&philo->ds->write);
 		printf("philo %d sleep   time:%ld\n",philo->id_philo,time_action(philo->times_start,philo->time_action));
+		// pthread_mutex_unlock(&philo->ds->write);
 		usleep(philo->data->time_to_sleep * 1000);
 		philo->time_action = ft_time();
+		// pthread_mutex_lock(&philo->ds->write);
 		printf("philo %d thiking   time:%ld\n",philo->id_philo,time_action(philo->times_start,philo->time_action));
+		// pthread_mutex_unlock(&philo->ds->write);
 	}
 	return (0);
 }
@@ -57,7 +67,8 @@ void ft_check_dead(t_data *data)
 	{
 		if (time_action(data->strct->last_time_eat ,ft_time()) >= data->strct->data->time_to_die + 5)
 		{
-			data->philo_is_dead = 1;
+			data->philo_is_dead = 1;\
+			// pthread_mutex_lock(&data->write);
 			printf("\033[31m philo %d is dead time :%ld\n  ",data->strct->id_philo,time_action(data->strct->times_start,data->strct->time_action));
 			return;
 		}
